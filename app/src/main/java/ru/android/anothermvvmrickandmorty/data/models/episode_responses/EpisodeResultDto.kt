@@ -3,7 +3,7 @@ package ru.android.anothermvvmrickandmorty.data.models.episode_responses
 
 import com.google.gson.annotations.SerializedName
 
-data class EpisodeResultsDto(
+data class EpisodeResultDto(
     @SerializedName("air_date")
     val airDate: String?,
     @SerializedName("characters")

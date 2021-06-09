@@ -3,7 +3,7 @@ package ru.android.anothermvvmrickandmorty.data.models.location_responses
 
 import com.google.gson.annotations.SerializedName
 
-data class LocationResultsDto(
+data class LocationResultDto(
     @SerializedName("created")
     val created: String?,
     @SerializedName("dimension")

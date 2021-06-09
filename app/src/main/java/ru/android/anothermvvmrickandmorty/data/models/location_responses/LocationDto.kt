@@ -7,5 +7,5 @@ data class LocationDto(
     @SerializedName("info")
     val info: InfoDto?,
     @SerializedName("results")
-    val results: List<LocationResultsDto>?
+    val results: List<LocationResultDto>?
 )

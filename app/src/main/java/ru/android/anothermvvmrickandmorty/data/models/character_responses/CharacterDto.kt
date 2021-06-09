@@ -7,5 +7,5 @@ data class CharacterDto(
     @SerializedName("info")
     val info: InfoDto?,
     @SerializedName("results")
-    val results: List<CharacterResultsDto>?
+    val results: List<CharacterResultDto>?
 )
