@@ -1,5 +1,6 @@
 package ru.android.anothermvvmrickandmorty.app
 
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.android.anothermvvmrickandmorty.data.character.CharacterDataSourceImpl
 import ru.android.anothermvvmrickandmorty.data.characters.CharactersDataSourceImpl
@@ -25,8 +26,29 @@ import ru.android.anothermvvmrickandmorty.domain.location.LocationInteractorImpl
 import ru.android.anothermvvmrickandmorty.domain.locations.LocationsDataSource
 import ru.android.anothermvvmrickandmorty.domain.locations.LocationsInteractor
 import ru.android.anothermvvmrickandmorty.domain.locations.LocationsInteractorImpl
+import ru.android.anothermvvmrickandmorty.presentation.characters.CharactersViewModel
+import ru.android.anothermvvmrickandmorty.presentation.episodes.EpisodesViewModel
+import ru.android.anothermvvmrickandmorty.presentation.locations.LocationsViewModel
 
 private val allModules = module {
+
+    viewModel {
+        CharactersViewModel(
+            charactersInteractor = get()
+        )
+    }
+
+    viewModel {
+        EpisodesViewModel(
+            episodesInteractor = get()
+        )
+    }
+
+    viewModel {
+        LocationsViewModel(
+            locationsInteractor = get()
+        )
+    }
 
     single<CharacterDataSource> {
         CharacterDataSourceImpl()
