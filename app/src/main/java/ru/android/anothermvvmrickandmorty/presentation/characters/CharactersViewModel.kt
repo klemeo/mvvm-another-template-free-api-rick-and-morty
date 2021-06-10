@@ -14,15 +14,15 @@ class CharactersViewModel(
 
     var character = MutableLiveData<Character?>()
 
-    private var getCategoryObserver = Observer<Result<Character>> { result ->
+    private var getCharactersObserver = Observer<Result<Character>> { result ->
         handleCategoryResult(result)
     }
 
-    private var getCategoryLiveData: LiveData<Result<Character>>?
-            by ResultObserverDelegate(getCategoryObserver)
+    private var getCharactersLiveData: LiveData<Result<Character>>?
+            by ResultObserverDelegate(getCharactersObserver)
 
     fun getCharacters(page: Int? = null) {
-        getCategoryLiveData = charactersInteractor.getCharacters(page)
+        getCharactersLiveData = charactersInteractor.getCharacters(page)
     }
 
     private fun handleCategoryResult(result: Result<Character>) {
