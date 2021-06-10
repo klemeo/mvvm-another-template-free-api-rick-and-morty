@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import ru.android.anothermvvmrickandmorty.base.ResultObserverDelegate
 import ru.android.anothermvvmrickandmorty.domain.characters.CharactersInteractor
 import ru.android.anothermvvmrickandmorty.domain.models.character_body.Character
+import ru.android.anothermvvmrickandmorty.presentation.utils.pageCharacters
 
 class CharactersViewModel(
     private val charactersInteractor: CharactersInteractor
@@ -33,6 +34,26 @@ class CharactersViewModel(
             .onFailure {
 
             }
+    }
+
+    fun flippingNext() {
+        val nextPage = character.value?.info?.next?.pageCharacters()
+        if (nextPage != null) getCharacters(nextPage)
+    }
+
+    fun flippingPrev() {
+        val prevPage = character.value?.info?.prev?.toString()?.pageCharacters()
+        if (prevPage != null) getCharacters(prevPage)
+    }
+
+    fun visiblePrev(): Boolean {
+        val prevPage = character.value?.info?.prev?.toString()?.pageCharacters()
+        return prevPage == null
+    }
+
+    fun visibleNext(): Boolean {
+        val nextPage = character.value?.info?.next?.pageCharacters()
+        return nextPage == null
     }
 
 }

@@ -63,6 +63,8 @@ class CharactersFragment : Fragment() {
             if (it != null) {
                 it.results?.let { results -> charactersAdapter.addHeaderAndSubmitList(results) }
                 pbPost.isGone = true
+                backButton.isGone = viewModel.visiblePrev()
+                nextButton.isGone = viewModel.visibleNext()
             }
         })
     }
