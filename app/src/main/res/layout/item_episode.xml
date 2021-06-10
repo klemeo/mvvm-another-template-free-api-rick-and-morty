@@ -3,10 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="data"
+            type="ru.android.anothermvvmrickandmorty.domain.models.episode_body.EpisodeResult" />
+
+        <variable
+            name="clickListener"
+            type="ru.android.anothermvvmrickandmorty.presentation.episodes.EpisodesListener" />
+    </data>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(data)}"
         android:orientation="vertical"
         android:padding="10dp"
         app:cardUseCompatPadding="true">
@@ -17,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center"
+            android:text="@{data.name}"
             tools:text="Episode" />
     </androidx.cardview.widget.CardView>
 
