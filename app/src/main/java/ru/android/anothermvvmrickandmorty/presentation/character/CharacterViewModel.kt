@@ -15,7 +15,7 @@ class CharacterViewModel(
     var character = MutableLiveData<CharacterResult?>()
 
     private var getCharacterObserver = Observer<Result<CharacterResult>> { result ->
-        handleCategoryResult(result)
+        handleCharacterResult(result)
     }
 
     private var getCharacterLiveData: LiveData<Result<CharacterResult>>?
@@ -25,7 +25,7 @@ class CharacterViewModel(
         getCharacterLiveData = characterInteractor.getCharacter(id)
     }
 
-    private fun handleCategoryResult(result: Result<CharacterResult>) {
+    private fun handleCharacterResult(result: Result<CharacterResult>) {
         result
             .onSuccess {
                 character.postValue(it)

@@ -15,7 +15,7 @@ class LocationsViewModel(
     var location = MutableLiveData<Location?>()
 
     private var getLocationsObserver = Observer<Result<Location>> { result ->
-        handleCategoryResult(result)
+        handleLocationResult(result)
     }
 
     private var getLocationsLiveData: LiveData<Result<Location>>?
@@ -25,7 +25,7 @@ class LocationsViewModel(
         getLocationsLiveData = locationsInteractor.getLocations(page)
     }
 
-    private fun handleCategoryResult(result: Result<Location>) {
+    private fun handleLocationResult(result: Result<Location>) {
         result
             .onSuccess {
                 location.postValue(it)

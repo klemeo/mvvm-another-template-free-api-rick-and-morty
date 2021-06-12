@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import ru.android.anothermvvmrickandmorty.base.ResultObserverDelegate
 import ru.android.anothermvvmrickandmorty.domain.episodes.EpisodesInteractor
 import ru.android.anothermvvmrickandmorty.domain.models.episode_body.Episode
-import ru.android.anothermvvmrickandmorty.presentation.utils.pageCharacters
 import ru.android.anothermvvmrickandmorty.presentation.utils.pageEpisodes
 
 class EpisodesViewModel(
@@ -17,7 +16,7 @@ class EpisodesViewModel(
     var episode = MutableLiveData<Episode?>()
 
     private var getEpisodesObserver = Observer<Result<Episode>> { result ->
-        handleCategoryResult(result)
+        handleEpisodeResult(result)
     }
 
     private var getEpisodesLiveData: LiveData<Result<Episode>>?
@@ -27,7 +26,7 @@ class EpisodesViewModel(
         getEpisodesLiveData = episodesInteractor.getEpisodes(page)
     }
 
-    private fun handleCategoryResult(result: Result<Episode>) {
+    private fun handleEpisodeResult(result: Result<Episode>) {
         result
             .onSuccess {
                 episode.postValue(it)

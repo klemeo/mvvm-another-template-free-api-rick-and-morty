@@ -16,7 +16,7 @@ class EpisodeViewModel(
     var episode = MutableLiveData<EpisodeResult?>()
 
     private var getEpisodeObserver = Observer<Result<EpisodeResult>> { result ->
-        handleCategoryResult(result)
+        handleEpisodeResult(result)
     }
 
     private var getEpisodeLiveData: LiveData<Result<EpisodeResult>>?
@@ -26,7 +26,7 @@ class EpisodeViewModel(
         getEpisodeLiveData = episodeInteractor.getEpisode(id)
     }
 
-    private fun handleCategoryResult(result: Result<EpisodeResult>) {
+    private fun handleEpisodeResult(result: Result<EpisodeResult>) {
         result
             .onSuccess {
                 episode.postValue(it)
