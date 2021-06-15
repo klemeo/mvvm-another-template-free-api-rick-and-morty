@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ru.android.anothermvvmrickandmorty.presentation.locations.LocationsViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -53,6 +61,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/ic_baseline_arrow_back_ios_24"
+            android:onClick="@{() -> viewModel.flippingPrev()}"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:tint="#2196F3" />
@@ -64,6 +74,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:onClick="@{() -> viewModel.flippingNext()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="#2196F3" />
