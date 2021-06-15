@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ru.android.anothermvvmrickandmorty.presentation.character.CharacterViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -55,6 +63,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            app:imageUrl="@{viewModel.character.image}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -76,8 +85,9 @@
                             android:layout_margin="2dp"
                             android:fontFamily="@font/almendra_sc"
                             android:gravity="center"
-                            android:text="Mechanical Morty"
-                            android:textColor="?attr/colorOnSecondary" />
+                            android:text="@{viewModel.character.name}"
+                            android:textColor="?attr/colorOnSecondary"
+                            tools:text="Mechanical Morty" />
 
                         <TextView
                             android:id="@+id/textStatus"
@@ -85,7 +95,8 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="2dp"
                             android:gravity="center"
-                            android:text="Dead - Robot" />
+                            android:text="@{viewModel.character.status}"
+                            tools:text="Dead - Robot" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -101,7 +112,8 @@
                             android:layout_margin="2dp"
                             android:fontFamily="@font/almendra_sc"
                             android:gravity="center"
-                            android:text="Earth (Replacement Dimension)" />
+                            android:text="@{viewModel.character.location.name}"
+                            tools:text="Earth (Replacement Dimension)" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -117,13 +129,13 @@
                             android:layout_margin="2dp"
                             android:fontFamily="@font/almendra_sc"
                             android:gravity="center"
-                            android:text="Rickmancing the Stone" />
-
+                            android:text="@{viewModel.character.origin.name}"
+                            tools:text="Rickmancing the Stone" />
 
                     </LinearLayout>
 
-
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
             <TextView
