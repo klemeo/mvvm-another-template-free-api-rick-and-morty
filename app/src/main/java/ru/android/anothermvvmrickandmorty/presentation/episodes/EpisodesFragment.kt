@@ -1,5 +1,6 @@
 package ru.android.anothermvvmrickandmorty.presentation.episodes
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,15 +12,25 @@ import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_characters.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.android.anothermvvmrickandmorty.R
+import ru.android.anothermvvmrickandmorty.base.FragmentListenerUtils
 import ru.android.anothermvvmrickandmorty.databinding.FragmentEpisodesBinding
+import ru.android.anothermvvmrickandmorty.presentation.EpisodeScreenOne
 
 class EpisodesFragment : Fragment() {
 
     private val viewModel: EpisodesViewModel by viewModel()
 
-    private val episodesAdapter = EpisodesAdapter(EpisodesListener {
+    private lateinit var episodeListener: EpisodeScreenOne
 
+    private val episodesAdapter = EpisodesAdapter(EpisodesListener {
+        it.id?.let { episodeId -> episodeListener.openEpisodeScreenOne(episodeId) }
     })
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        episodeListener =
+            FragmentListenerUtils.getFragmentListener(this, EpisodeScreenOne::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

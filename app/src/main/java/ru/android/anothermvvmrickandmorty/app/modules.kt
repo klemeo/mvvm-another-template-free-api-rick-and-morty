@@ -28,6 +28,7 @@ import ru.android.anothermvvmrickandmorty.domain.locations.LocationsInteractor
 import ru.android.anothermvvmrickandmorty.domain.locations.LocationsInteractorImpl
 import ru.android.anothermvvmrickandmorty.presentation.character.CharacterViewModel
 import ru.android.anothermvvmrickandmorty.presentation.characters.CharactersViewModel
+import ru.android.anothermvvmrickandmorty.presentation.episode.EpisodeViewModel
 import ru.android.anothermvvmrickandmorty.presentation.episodes.EpisodesViewModel
 import ru.android.anothermvvmrickandmorty.presentation.locations.LocationsViewModel
 
@@ -48,6 +49,12 @@ private val allModules = module {
     viewModel {
         EpisodesViewModel(
             episodesInteractor = get()
+        )
+    }
+
+    viewModel {
+        EpisodeViewModel(
+            episodeInteractor = get()
         )
     }
 
