@@ -23,7 +23,7 @@ class LocationsFragment : Fragment() {
     private lateinit var locationListener: LocationScreenOne
 
     private val locationsAdapter = LocationsAdapter(LocationsListener {
-
+        it.id?.let { locationId -> locationListener.openLocationScreenOne(locationId) }
     })
 
     override fun onAttach(context: Context) {
