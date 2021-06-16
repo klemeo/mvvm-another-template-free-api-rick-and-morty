@@ -3,10 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ru.android.anothermvvmrickandmorty.presentation.location.LocationViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/buttonBack"
@@ -33,27 +40,31 @@
 
             <TextView
                 android:id="@+id/idTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp" />
+                android:layout_margin="8dp"
+                android:text="@{viewModel.location.id.toString()}" />
 
             <TextView
                 android:id="@+id/nameTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp" />
+                android:layout_margin="8dp"
+                android:text="@{viewModel.location.name}" />
 
             <TextView
                 android:id="@+id/dimensionTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp" />
+                android:layout_margin="8dp"
+                android:text="@{viewModel.location.dimension}" />
 
             <TextView
                 android:id="@+id/createdTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp" />
+                android:layout_margin="8dp"
+                android:text="@{viewModel.location.created}" />
 
             <TextView
                 android:layout_width="match_parent"
