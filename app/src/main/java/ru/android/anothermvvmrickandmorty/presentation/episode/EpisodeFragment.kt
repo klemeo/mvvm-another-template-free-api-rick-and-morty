@@ -76,7 +76,11 @@ class EpisodeFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.episode.observe(viewLifecycleOwner, {
             if (it != null) {
-                it.characters?.let { characterList -> characterAdapter.addHeaderAndSubmitList(characterList) }
+                it.characters?.let { characterList ->
+                    characterAdapter.addHeaderAndSubmitList(
+                        characterList
+                    )
+                }
                 pbPost.isGone = true
             }
         })

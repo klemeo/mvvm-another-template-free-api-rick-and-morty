@@ -5,15 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.navigation.fragment.navArgs
-import kotlinx.android.synthetic.main.fragment_episode.*
+import androidx.recyclerview.widget.GridLayoutManager
+import kotlinx.android.synthetic.main.fragment_location.*
 import ru.android.anothermvvmrickandmorty.R
 import ru.android.anothermvvmrickandmorty.base.FragmentListenerUtils
 import ru.android.anothermvvmrickandmorty.databinding.FragmentLocationBinding
 import ru.android.anothermvvmrickandmorty.presentation.LocationScreenTwo
+import ru.android.anothermvvmrickandmorty.presentation.number.NumberListener
 
 class LocationFragment : Fragment() {
 
@@ -22,6 +25,10 @@ class LocationFragment : Fragment() {
     private val navArgs by navArgs<LocationFragmentArgs>()
 
     private lateinit var locationListener: LocationScreenTwo
+
+    private val locationAdapter = LocationAdapter(NumberListener {
+        locationListener.openLocationScreenTwo(it.toInt())
+    })
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -54,6 +61,12 @@ class LocationFragment : Fragment() {
     private fun initView() {
         viewModel.getLocation(navArgs.id)
 
+        with(recyclerView) {
+            val manager = GridLayoutManager(activity, 5)
+            layoutManager = manager
+            adapter = locationAdapter
+        }
+
         buttonBack.setOnClickListener {
             activity?.onBackPressed()
         }
@@ -62,7 +75,14 @@ class LocationFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.location.observe(viewLifecycleOwner, {
-
+            if (it != null) {
+                it.residents?.let { characterList ->
+                    locationAdapter.addHeaderAndSubmitList(
+                        characterList
+                    )
+                }
+                pbPost.isGone = true
+            }
         })
     }
 
